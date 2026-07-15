@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            background: #1f2937;
+            color: #ffffff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+        }
+
+        .status {
+            margin: 0 0 20px;
+            color: #cbd5e1;
+        }
+
+        .chessboard {
+            width: min(90vw, 560px);
+            aspect-ratio: 1;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border: 8px solid #713f12;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+        }
+
+        .square {
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1;
+        }
+
+        .light {
+            background: #f0d9b5;
+        }
+
+        .dark {
+            background: #b58863;
+        }
+
+        .piece {
+            font-size: clamp(28px, 7vw, 54px);
+            line-height: 1;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .piece:active {
+            cursor: grabbing;
+        }
+
+        .white {
+            color: #ffffff;
+            text-shadow: 0 1px 2px #000000;
+        }
+
+        .black {
+            color: #111111;
+            text-shadow: 0 1px 1px #ffffff;
+        }
+        .chessboard.flipped {
+            transform: rotate(180deg);
+        }
+
+        .chessboard.flipped .piece {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1><%= title %></h1>
+        <p class="status">Drag a piece to make a move.</p>
+
+        <div class="chessboard"></div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="/js/chessgame.js"></script>
+</body>
+</html>
